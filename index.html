@@ -57,16 +57,10 @@
   <div class="card">
     <h1>Escala de Características Comportamentais para Crianças Superdotadas - Professores</h1>
     <p class="muted">
-    Opções de respostas:  
+    As respostas serão enviadas diretamente para a profissional responsável.  
     </p>
 
-    <div class="legend">
-      <span class="pill">Nunca</span>
-      <span class="pill">Raramente</span>
-      <span class="pill">Às vezes</span>
-      <span class="pill">Frequentemente</span>
-       <span class="pill">Sempre</span>
-    </div>
+    
 
     <div id="pacInfo" class="grid-info" style="display:none;"></div>
 
@@ -123,56 +117,56 @@ const DOMAINS = [
     key:"APRENDIZAGEM",
     label:" Habilidades de Aprendizagem",
     items: [
-"Compreende rapidamente novas informações e conteúdos.",  
-"Apresenta interesse em temas que vão além do currículo esperado para a idade.", 
-"Utiliza estratégias de aprendizagem avançadas para entender conceitos complexos.",  
-"Demonstra facilidade para generalizar conceitos e aplicá-los em diferentes contextos.",  
-"Realiza perguntas complexas e busca entender os fundamentos dos conceitos apresentados.",  
-"Aprende de forma independente e explora temas de maneira autodidata.",  
-"Demonstra raciocínio lógico e facilidade em conectar ideias aparentemente desconexas.",  
-"Faz inferências e formula hipóteses com base nas informações apresentadas."
-]
+      "Compreende rapidamente novas informações e conteúdos.",
+      "Apresenta interesse em temas que vão além do currículo esperado para a idade.",
+      "Utiliza estratégias de aprendizagem avançadas para entender conceitos complexos.",
+      "Demonstra facilidade para generalizar conceitos e aplicá-los em diferentes contextos.",
+      "Realiza perguntas complexas e busca entender os fundamentos dos conceitos apresentados.",
+      "Aprende de forma independente e explora temas de maneira autodidata.",
+      "Demonstra raciocínio lógico e facilidade em conectar ideias aparentemente desconexas.",
+      "Faz inferências e formula hipóteses com base nas informações apresentadas."
+    ]
   },
   {
     key:"MOTIVACAO",
     label:"Motivação",
     items: [
-"Continua a trabalhar em uma tarefa mesmo diante de dificuldades.",  
-"Demonstra entusiasmo em aprender e explorar novos tópicos.", 
-"Apresenta iniciativa para realizar projetos ou atividades por conta própria.",  
-"Dedica-se a melhorar suas habilidades, buscando excelência em suas atividades.",  
-"Participa ativamente de discussões e demonstra interesse genuíno em aprender.",  
-"Define metas pessoais para alcançar e supera expectativas com frequência.",  
-"Mostra perseverança e empenho ao lidar com atividades desafiadoras."    ]
+      "Continua a trabalhar em uma tarefa mesmo diante de dificuldades.",
+      "Demonstra entusiasmo em aprender e explorar novos tópicos.",
+      "Apresenta iniciativa para realizar projetos ou atividades por conta própria.",
+      "Dedica-se a melhorar suas habilidades, buscando excelência em suas atividades.",
+      "Participa ativamente de discussões e demonstra interesse genuíno em aprender.",
+      "Define metas pessoais para alcançar e supera expectativas com frequência.",
+      "Mostra perseverança e empenho ao lidar com atividades desafiadoras."
+    ]
   },
   {
     key:"CRIATIVIDADE",
     label:"Criatividade ",
     items: [
-"Gera ideias novas e originais para resolver problemas.",  
-"Propõe soluções inesperadas e inovadoras para desafios cotidianos.", 
-"Combina informações de diferentes áreas para criar novas perspectivas.",  
-"Demonstra curiosidade e interesse em explorar novas possibilidades.",  
-"Encontra novas maneiras de abordar tarefas e atividades comuns.",  
-"Produz trabalhos criativos e inovadores em diferentes áreas (desenhos, escrita, projetos, etc.).",  
-"Aprecia a ambiguidade e demonstra facilidade em lidar com situações abertas."
-     ]
+      "Gera ideias novas e originais para resolver problemas.",
+      "Propõe soluções inesperadas e inovadoras para desafios cotidianos.",
+      "Combina informações de diferentes áreas para criar novas perspectivas.",
+      "Demonstra curiosidade e interesse em explorar novas possibilidades.",
+      "Encontra novas maneiras de abordar tarefas e atividades comuns.",
+      "Produz trabalhos criativos e inovadores em diferentes áreas (desenhos, escrita, projetos, etc.).",
+      "Aprecia a ambiguidade e demonstra facilidade em lidar com situações abertas."
+    ]
   },
   {
     key:"LIDERANCA",
     label:"Liderança",
     items: [
-"Inicia e organiza atividades em grupo.",  
-"Demonstra responsabilidade e capacidade de tomar decisões de maneira eficaz.", 
-"Inspira e motiva os outros a participarem e se engajarem em atividades.",  
-"Resolve conflitos de maneira pacífica e justa, buscando o consenso.",  
-"Comunica suas ideias de maneira clara e assertiva.",  
-"Assume a responsabilidade pelo grupo e organiza tarefas.",  
-"Gosta de participar de atividades que envolvem responsabilidade e liderança." 
+      "Inicia e organiza atividades em grupo.",
+      "Demonstra responsabilidade e capacidade de tomar decisões de maneira eficaz.",
+      "Inspira e motiva os outros a participarem e se engajarem em atividades.",
+      "Resolve conflitos de maneira pacífica e justa, buscando o consenso.",
+      "Comunica suas ideias de maneira clara e assertiva.",
+      "Assume a responsabilidade pelo grupo e organiza tarefas.",
+      "Gosta de participar de atividades que envolvem responsabilidade e liderança."
     ]
   }
 ];
-
 
 /* ========= RENDER ========= */
 function renderQuestions(){
@@ -274,7 +268,6 @@ function renderPatientInfo(){
   const info=[
     ["Nome", patient.nome||"-"],
     ["Nascimento", fmtDateISO(patient.data_nascimento)]
-  
   ];
 
   for(const [k,v] of info){
@@ -304,11 +297,7 @@ function restoreDraft(){
   }catch(_){}
 }
 function clearDraft(){
-  try {
-    localStorage.removeItem(STORAGE_KEY);
-  } catch (_) {
-    // ignorar erro de storage bloqueado/sem permissão
-  }
+  try { localStorage.removeItem(STORAGE_KEY); } catch (_) { /* ignore */ }
 }
 function countTotalItems(){ return DOMAINS.reduce((a,d)=>a+d.items.length,0); }
 function countAnswered(){ return document.querySelectorAll('input[type="radio"][name^="q"]:checked').length; }
@@ -327,7 +316,7 @@ $("#clearDraft").addEventListener('click', ()=>{ clearDraft(); setBox("#msg","Ra
 
 /* ========= CÁLCULOS ========= */
 function domainSum(domainIndex){
-  // os itens são numerados sequencialmente; somamos percorrendo
+  // soma valores daquele domínio
   let base=0;
   for(let i=0;i<domainIndex;i++) base += DOMAINS[i].items.length;
   let sum=0;
@@ -339,13 +328,46 @@ function domainSum(domainIndex){
   return sum;
 }
 function totalSum(){
-  let s=0, idxBase=0, n=countTotalItems();
+  let s=0;
+  const n=countTotalItems();
   for(let i=1;i<=n;i++){
     const qn=String(i).padStart(3,'0');
     const sel=document.querySelector(`input[name="q${qn}"]:checked`);
     s += sel ? Number(sel.value) : 0;
   }
   return s;
+}
+
+/* ========= TEXTO HUMANO DAS RESPOSTAS ========= */
+// mapa fixo dos rótulos Likert 1-5 usados nesse instrumento
+const LIKERT5 = [
+  {v:1,l:'Nunca'},
+  {v:2,l:'Raramente'},
+  {v:3,l:'Às vezes'},
+  {v:4,l:'Frequentemente'},
+  {v:5,l:'Sempre'}
+];
+
+function labelFromValue(vNum){
+  const f = LIKERT5.find(o => o.v === Number(vNum));
+  return f ? f.l : String(vNum);
+}
+
+function collectQuestionsAnswers(){
+  const lines = [];
+  let globalIdx = 0;
+
+  DOMAINS.forEach(domain => {
+    domain.items.forEach(txt => {
+      globalIdx++;
+      const qn = String(globalIdx).padStart(3,'0');
+      const sel = document.querySelector(`input[name="q${qn}"]:checked`);
+      const ansLabel = sel ? labelFromValue(sel.value) : "—";
+      lines.push(`${globalIdx}. ${txt} => ${ansLabel}`);
+    });
+  });
+
+  return lines.join("\n");
 }
 
 /* ========= SUBMIT ========= */
@@ -359,71 +381,96 @@ $("#form").addEventListener("submit", async (e)=>{
     for(let i=1;i<=tot;i++){
       const qn=String(i).padStart(3,'0');
       if(!document.querySelector(`input[name="q${qn}"]:checked`)){
-        const row=document.querySelector(`.item[data-q="${i}"]`); if(row) row.scrollIntoView({behavior:'smooth',block:'center'});
+        const row=document.querySelector(`.item[data-q="${i}"]`);
+        if(row) row.scrollIntoView({behavior:'smooth',block:'center'});
         throw new Error(`Responda o item ${i}.`);
       }
     }
 
     // somatórios por domínio
-const somaAPRENDIZAGEM = domainSum(0);
-const somaMOTIVACAO    = domainSum(1);
-const somaCRIATIVIDADE = domainSum(2);
-const somaLIDERANCA    = domainSum(3);
-const somaINTERPRETACAO = totalSum(); // soma geral
+    const somaAPRENDIZAGEM = domainSum(0);
+    const somaMOTIVACAO    = domainSum(1);
+    const somaCRIATIVIDADE = domainSum(2);
+    const somaLIDERANCA    = domainSum(3);
+    const somaINTERPRETACAO = totalSum(); // soma geral
 
-// máximo possível (itens * 5 pontos)
-const maxTotal = countTotalItems() * 5;
+    // máximo possível (itens * 5 pontos)
+    const maxTotal = countTotalItems() * 5;
 
-// classificações por domínio (mantive teus cortes)
-function aprendizagem(s){  if(s>=32) return "Habilidade Excelente."; if(s>=24) return "Habilidade Alta."; if(s>=16) return "Habilidade Média."; return "Habilidade Baixa."; }
-function motivacao(s){     if(s>=28) return "Habilidade Excelente."; if(s>=21) return "Habilidade Alta."; if(s>=14) return "Habilidade Média."; return "Habilidade Baixa."; }
-function criatividade(s){  if(s>=28) return "Habilidade Excelente."; if(s>=21) return "Habilidade Alta."; if(s>=14) return "Habilidade Média."; return "Habilidade Baixa."; }
-function lideranca(s){     if(s>=28) return "Habilidade Excelente."; if(s>=21) return "Habilidade Alta."; if(s>=14) return "Habilidade Média."; return "Habilidade Baixa."; }
+    // cortes de interpretação por domínio
+    function aprendizagem(s){
+      if(s>=32) return "Habilidade Excelente.";
+      if(s>=24) return "Habilidade Alta.";
+      if(s>=16) return "Habilidade Média.";
+      return "Habilidade Baixa.";
+    }
+    function motivacao(s){
+      if(s>=28) return "Habilidade Excelente.";
+      if(s>=21) return "Habilidade Alta.";
+      if(s>=14) return "Habilidade Média.";
+      return "Habilidade Baixa.";
+    }
+    function criatividade(s){
+      if(s>=28) return "Habilidade Excelente.";
+      if(s>=21) return "Habilidade Alta.";
+      if(s>=14) return "Habilidade Média.";
+      return "Habilidade Baixa.";
+    }
+    function lideranca(s){
+      if(s>=28) return "Habilidade Excelente.";
+      if(s>=21) return "Habilidade Alta.";
+      if(s>=14) return "Habilidade Média.";
+      return "Habilidade Baixa.";
+    }
 
-// interpretação global por percentual do máximo (robusto se o nº de itens mudar)
-function interpretacao(s){
-  const p = s / maxTotal;          // 0.00–1.00
-  if (p >= 0.80) return "Perfil de superdotação bem desenvolvido, com alta probabilidade de desempenho excepcional em várias áreas.";
-  if (p >= 0.60) return "Perfil cognitivo e comportamental superior, com destaque em algumas dimensões específicas.";
-  if (p >= 0.40) return "Desenvolvimento dentro do esperado, com algumas áreas de potencial elevado.";
-  return "Dificuldades no desenvolvimento de algumas áreas, necessitando acompanhamento mais detalhado para apoio e estímulo adicional.";
-}
+    // interpretação global proporcional
+    function interpretacao(s){
+      const p = s / maxTotal; // 0..1
+      if (p >= 0.80) return "Perfil de superdotação bem desenvolvido, com alta probabilidade de desempenho excepcional em várias áreas.";
+      if (p >= 0.60) return "Perfil cognitivo e comportamental superior, com destaque em algumas dimensões específicas.";
+      if (p >= 0.40) return "Desenvolvimento dentro do esperado, com algumas áreas de potencial elevado.";
+      return "Dificuldades no desenvolvimento de algumas áreas, necessitando acompanhamento mais detalhado para apoio e estímulo adicional.";
+    }
 
-// texto da coluna 'categoria'
-const categoria_csv = [
-  `Aprendizagem=${aprendizagem(somaAPRENDIZAGEM)}`,
-  `Motivação=${motivacao(somaMOTIVACAO)}`,
-  `Criatividade=${criatividade(somaCRIATIVIDADE)}`,
-  `Liderança=${lideranca(somaLIDERANCA)}`,
-  `Interpretação=${interpretacao(somaINTERPRETACAO)}`
-].join(',');
+    // texto interpretativo compacto
+    const categoria_csv = [
+      `Aprendizagem=${aprendizagem(somaAPRENDIZAGEM)}`,
+      `Motivação=${motivacao(somaMOTIVACAO)}`,
+      `Criatividade=${criatividade(somaCRIATIVIDADE)}`,
+      `Liderança=${lideranca(somaLIDERANCA)}`,
+      `Interpretação=${interpretacao(somaINTERPRETACAO)}`
+    ].join(',');
 
-// 🔧 total CORRIGIDO e métricas ricas
-await sheetCreate(SHEETS.SCORES, {
-  result_id: `${patient.cpf}_${CODE}_${Date.now()}`,
-  token: TOKEN,
-  cpf: patient.cpf,
-  code: CODE,
-  source: "paciente",
-  submitted_at: new Date().toISOString(),
-  total: somaINTERPRETACAO,                 // <-- era 'total' (undefined)
-  categoria: categoria_csv,
-  metrics: JSON.stringify({
-    sums: {
-      APRENDIZAGEM: somaAPRENDIZAGEM,
-      MOTIVACAO: somaMOTIVACAO,
-      CRIATIVIDADE: somaCRIATIVIDADE,
-      LIDERANCA: somaLIDERANCA
-    },
-    total: somaINTERPRETACAO,
-    max_total: maxTotal,
-    percent_total: Number((somaINTERPRETACAO / maxTotal).toFixed(4))
-  })
-});
+    // bloco completo "pergunta => resposta"
+    const questionsStr = collectQuestionsAnswers();
 
+    // envia
+    await sheetCreate(SHEETS.SCORES, {
+      result_id: `${patient.cpf}_${CODE}_${Date.now()}`,
+      token: TOKEN,
+      cpf: patient.cpf,
+      code: CODE,
+      source: "professor",
+      submitted_at: new Date().toISOString(),
+      total: somaINTERPRETACAO,
+      categoria: categoria_csv,
+      metrics: JSON.stringify({
+        sums: {
+          APRENDIZAGEM: somaAPRENDIZAGEM,
+          MOTIVACAO: somaMOTIVACAO,
+          CRIATIVIDADE: somaCRIATIVIDADE,
+          LIDERANCA: somaLIDERANCA
+        },
+        total: somaINTERPRETACAO,
+        max_total: maxTotal,
+        percent_total: Number((somaINTERPRETACAO / maxTotal).toFixed(4))
+      }),
+      questions: questionsStr   // << audit trail das respostas
+    });
 
     // marca como feito
-    const patch={}; RELEASE_KEYS.map(k=>`${k}_FEITO`).forEach(k=>{ if(k in patient) patch[k]="sim"; });
+    const patch={};
+    RELEASE_KEYS.map(k=>`${k}_FEITO`).forEach(k=>{ if(k in patient) patch[k]="sim"; });
     if(Object.keys(patch).length===0) patch[`${RELEASE_KEYS[0]}_FEITO`] = "sim";
     await sheetPatchBy(SHEETS.PATIENTS,"cpf",patient.cpf,patch);
 
@@ -438,5 +485,6 @@ await sheetCreate(SHEETS.SCORES, {
   }
 });
 </script>
+
 </body>
 </html>
